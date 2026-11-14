@@ -137,7 +137,6 @@
   .project.flip .media{order:2}
   .media{border-radius:20px;overflow:hidden;box-shadow:var(--shadow),0 0 0 1px var(--line);background:#fff}
   .media img{width:100%;height:auto}
-  .media video{display:block;width:100%;height:auto;background:#0F2A47}
   .tag{display:inline-block;background:#FFF1E5;color:var(--rust);font-weight:700;font-size:13.5px;padding:5px 12px;border-radius:999px;margin-bottom:14px}
   .project h3{font-size:clamp(26px,3vw,34px);font-weight:800;margin-bottom:14px}
   .project p{margin-bottom:20px}
@@ -182,6 +181,39 @@
   .flow li.result p{background:#F0FAF4;border:1px solid #CDEBDB;border-radius:10px;padding:10px 12px;color:#14603D;font-weight:600}
   .used{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
   .used span{font-size:13px;font-weight:700;color:var(--navy);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+
+  /* AI video section */
+  .aiv{padding-bottom:40px}
+  .aiv-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+  .aiv-grid h3{font-size:clamp(24px,2.6vw,30px);font-weight:800;margin-bottom:14px}
+  .aiv-grid p{margin-bottom:20px}
+  .aiv-media{position:relative}
+  .aiv-frame{position:relative;border-radius:20px;padding:4px;background:linear-gradient(120deg,#FE8017,#1565D8,#FE8017);background-size:200% 200%;box-shadow:var(--shadow)}
+  .aiv-frame video{display:block;width:100%;height:auto;border-radius:16px;background:var(--deep)}
+  .aiv-badge{position:absolute;z-index:2;top:-16px;right:-14px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:var(--deep);font:900 18px/1 var(--head);box-shadow:0 10px 22px -8px rgba(254,128,23,.7);border:3px solid #fff}
+  .aiv-title .hl{position:relative;color:var(--rust);white-space:nowrap}
+  .aiv-title .hl::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:6px;border-radius:6px;background:var(--orange);opacity:.35;transform-origin:left}
+  .aiv-title .w{display:inline-block}
+  @media (max-width:1000px){.aiv-grid{grid-template-columns:1fr;gap:32px}}
+  @media (max-width:560px){.aiv-badge{width:46px;height:46px;font-size:15px;right:-6px}}
+  @media (prefers-reduced-motion:no-preference){
+    .aiv-frame{animation:aivBorder 6s linear infinite}
+    .aiv-badge{animation:aivFloat 3s ease-in-out infinite}
+    @keyframes aivBorder{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+    @keyframes aivFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    .anim .aiv-title .w{opacity:0;transform:translateY(22px)}
+    .anim .aiv-title.in .w{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+    .anim .aiv-title.in .w:nth-child(2){transition-delay:.08s}
+    .anim .aiv-title.in .w:nth-child(3){transition-delay:.16s}
+    .anim .aiv-title.in .w:nth-child(4){transition-delay:.24s}
+    .anim .aiv-title.in .w:nth-child(5){transition-delay:.32s}
+    .anim .aiv-title .hl::after{transform:scaleX(0)}
+    .anim .aiv-title.in .hl::after{transform:scaleX(1);transition:transform .6s .75s cubic-bezier(.2,.8,.2,1)}
+    .anim .reveal{opacity:0;transform:translateY(18px)}
+    .anim .reveal.in{opacity:1;transform:none;transition:opacity .6s var(--d,0s) ease,transform .6s var(--d,0s) cubic-bezier(.2,.8,.2,1)}
+    .anim .reveal-zoom{opacity:0;transform:scale(.94)}
+    .anim .reveal-zoom.in{opacity:1;transform:none;transition:opacity .7s .15s ease,transform .7s .15s cubic-bezier(.2,.8,.2,1)}
+  }
 
   /* services: dark cards like the site's pricing cards */
   .services{background:var(--soft);border-block:1px solid var(--line)}
@@ -490,6 +522,33 @@
   </section>
 
 
+  <section id="ai-video" class="aiv">
+    <div class="wrap">
+      <div class="head center">
+        <p class="kicker reveal">AI video</p>
+        <h2 class="aiv-title"><span class="w">See</span> <span class="w">an</span> <span class="w">AI</span> <span class="w">video</span> <span class="w hl">I made</span></h2>
+        <p class="reveal" style="--d:.5s">One minute, every shot made with AI, then finished by hand.</p>
+      </div>
+      <div class="aiv-grid">
+        <div class="aiv-media reveal-zoom">
+          <span class="aiv-badge" aria-hidden="true">AI</span>
+          <div class="aiv-frame"><video controls playsinline preload="metadata" poster="yousuf-intro-poster.jpg" width="1920" height="1080"><source src="yousuf-intro.mp4" type="video/mp4">Your browser can't play this video.</video></div>
+        </div>
+        <div class="reveal" style="--d:.25s">
+          <span class="tag">AI presenter video</span>
+          <h3>My Fiverr intro, made with AI</h3>
+          <p>I wrote the script, generated every shot with Google Flow using a consistent AI version of myself, then added the captions and finished the edit in CapCut.</p>
+          <ul class="ticks">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Same character, room and outfit in all 7 shots</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Lip-synced voice and animated caption cards</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Landscape, ready for Fiverr and websites</li>
+          </ul>
+          <a class="link" href="https://www.fiverr.com/w3jamil" target="_blank" rel="noopener">Order an AI video on Fiverr</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="fixes" class="fixes-section">
     <div class="wrap">
       <div class="head center">
@@ -613,7 +672,7 @@
       <div class="head center">
         <p class="kicker">My work</p>
         <h2>Projects you can open and check</h2>
-        <p>All of them are real, and I made every part myself.</p>
+        <p>Both are live, and I made every part of them myself.</p>
       </div>
 
       <article class="project">
@@ -646,21 +705,6 @@
             <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>2M+ views every month</li>
           </ul>
           <a class="link" href="https://www.instagram.com/_fluentlish/" target="_blank" rel="noopener">Watch the Reels on Instagram</a>
-        </div>
-      </article>
-
-      <article class="project" id="ai-video">
-        <div class="media"><video controls playsinline preload="metadata" poster="yousuf-intro-poster.jpg" width="1920" height="1080"><source src="yousuf-intro.mp4" type="video/mp4">Your browser can't play this video.</video></div>
-        <div>
-          <span class="tag">AI video</span>
-          <h3>AI presenter video</h3>
-          <p>A one-minute intro video made with AI. I wrote the script, generated every shot with Google Flow using a consistent AI version of myself, then added the captions and finished the edit in CapCut.</p>
-          <ul class="ticks">
-            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Same character, room and outfit in all 7 shots</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Lip-synced voice and animated caption cards</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#FE8017"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0F2A47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Made for a Fiverr profile, in landscape</li>
-          </ul>
-          <a class="link" href="https://www.fiverr.com/w3jamil" target="_blank" rel="noopener">Order an AI video on Fiverr</a>
         </div>
       </article>
 
@@ -856,6 +900,11 @@ dlg.querySelector('[data-close]').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
 [gm,app].forEach(l=>l.addEventListener('click',()=>setTimeout(()=>dlg.close(),300)));
 
+if(matchMedia('(prefers-reduced-motion: no-preference)').matches&&'IntersectionObserver' in window){
+  document.documentElement.classList.add('anim');
+  const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.2});
+  document.querySelectorAll('#ai-video .reveal,#ai-video .reveal-zoom,#ai-video .aiv-title').forEach(el=>rio.observe(el));
+}
 </script>
 </body>
 </html>
