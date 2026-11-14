@@ -497,7 +497,30 @@
   .mail-opts svg{flex:none}
   .mail-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--soft);color:var(--deep);font-size:20px;line-height:1;cursor:pointer}
   .copied{color:#1B8A55 !important}
+  /* AI video project */
+  .aiv-sec{padding-bottom:16px}
+  .vid-visual{background-color:#FFF6EE}
+  .vframe{position:relative;width:100%;border-radius:16px;overflow:hidden;border:5px solid var(--deep);background:var(--deep);box-shadow:0 26px 44px -20px rgba(9,55,105,.6);transition:transform .3s}
+  .show:hover .vframe{transform:translateY(-4px)}
+  .vframe video{display:block;width:100%;height:auto}
+  .vplay{position:absolute;z-index:2;left:86%;top:80%;width:64px;height:64px;margin:-32px 0 0 -32px;border:0;border-radius:50%;background:var(--orange);color:var(--deep);display:grid;place-items:center;padding-left:3px;cursor:pointer;box-shadow:0 0 0 8px rgba(254,128,23,.25),0 12px 26px -8px rgba(0,0,0,.5);transition:transform .2s}
+  .vplay:hover{transform:scale(1.08)}
+  .vplay:focus-visible{outline:3px solid #fff;outline-offset:4px}
+  .vframe.playing .vplay{display:none}
+  .f-ai{top:18px;right:-14px}
+  .f-sync{bottom:18px;left:-14px}
+  .live.ai{color:var(--rust);background:#FFF1E5}
+  .live.ai i{background:var(--orange);box-shadow:0 0 0 3px rgba(254,128,23,.22)}
+  @media (max-width:560px){.vplay{width:42px;height:42px;margin:-21px 0 0 -21px;left:89%;top:84%;box-shadow:0 0 0 5px rgba(254,128,23,.25)}.vplay svg{width:18px;height:18px}.f-ai{top:6px;right:-4px}.f-sync{bottom:-12px;left:-4px}}
+  /* site-wide text animation */
+  @media (prefers-reduced-motion:no-preference){
+    .anim .split .w{display:inline-block;opacity:0;transform:translateY(.45em)}
+    .anim .split.in .w{opacity:1;transform:none;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*.055s)}
+    .anim .reveal{opacity:0;transform:translateY(18px)}
+    .anim .reveal.in{opacity:1;transform:none;transition:opacity .6s var(--d,0s) ease,transform .6s var(--d,0s) cubic-bezier(.2,.8,.2,1)}
+  }
 </style>
+<script>if(matchMedia('(prefers-reduced-motion: no-preference)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('anim');</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -564,6 +587,40 @@
     </div>
   </section>
 
+
+  <section id="ai-video" class="aiv-sec">
+    <div class="wrap">
+      <div class="head center">
+        <p class="kicker">AI video</p>
+        <h2>See an AI video I made</h2>
+        <p>One minute, every shot made with AI, then finished by hand.</p>
+      </div>
+      <article class="show" style="margin-bottom:0">
+        <div class="show-visual vid-visual">
+          <div class="vframe">
+            <button type="button" class="vplay" aria-label="Play the AI video"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+            <video playsinline preload="metadata" poster="yousuf-intro-poster.jpg" width="1920" height="1080"><source src="yousuf-intro.mp4" type="video/mp4">Your browser can't play this video.</video>
+          </div>
+          <div class="float f-ai" aria-hidden="true"><i class="fi o"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></i>Google Flow shots</div>
+          <div class="float f-sync" aria-hidden="true"><i class="fi b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Lip-synced voice</div>
+        </div>
+        <div class="show-info">
+          <div class="show-top"><span class="tag">AI presenter video</span><span class="live ai"><i></i>Made with AI</span></div>
+          <h3>My Fiverr intro, made with AI</h3>
+          <p>I wrote the script, generated every shot with Google Flow using a consistent AI version of myself, then added the captions and finished the edit in CapCut.</p>
+          <div class="metrics">
+            <div><b>7</b><span>AI shots, one look</span></div>
+            <div><b>1 min</b><span>script to final cut</span></div>
+            <div><b>16:9</b><span>Fiverr and websites</span></div>
+          </div>
+          <div class="stack" aria-label="Made with"><span>Google Flow</span><span>Lip sync</span><span>CapCut</span><span>Caption cards</span></div>
+          <div class="show-btns">
+            <a class="btn btn-orange" href="https://www.fiverr.com/w3jamil" target="_blank" rel="noopener">Order an AI video on Fiverr <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <section id="fixes" class="fixes-section">
     <div class="wrap">
@@ -936,6 +993,22 @@ dlg.querySelector('[data-close]').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
 [gm,app].forEach(l=>l.addEventListener('click',()=>setTimeout(()=>dlg.close(),300)));
 
+
+/* AI video: clean frame with a play button; controls only after playing */
+document.querySelectorAll('.vframe').forEach(f=>{const v=f.querySelector('video'),b=f.querySelector('.vplay');if(!v||!b)return;
+  b.addEventListener('click',()=>{f.classList.add('playing');v.controls=true;v.play();});
+  v.addEventListener('ended',()=>{v.controls=false;v.load();f.classList.remove('playing');});});
+/* text animation across the site */
+if(document.documentElement.classList.contains('anim')){
+  const split=el=>{let i=0;const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const parts=c.textContent.split(/(\s+)/);const f=document.createDocumentFragment();parts.forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return;}const w=document.createElement('span');w.className='w';w.style.setProperty('--i',i++);w.textContent=t;f.appendChild(w);});c.replaceWith(f);}else if(c.nodeType===1&&!c.classList.contains('w'))walk(c);});};walk(el);el.classList.add('split');};
+  document.querySelectorAll('main h2').forEach(split);
+  const sel=['.head .kicker','.head p','.show-visual','.show-info','.fix','.svc','.steps li','.jobs li','.side > div','.cta-box p','.cta-box .actions','.cta-list li'];
+  document.querySelectorAll(sel.join(',')).forEach(el=>{el.classList.add('reveal');const sib=[...el.parentElement.children].filter(c=>c.matches(sel.join(',')));const k=sib.indexOf(el);if(k>0)el.style.setProperty('--d',(k*0.09).toFixed(2)+'s');});
+  const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.split').forEach(el=>rio.observe(el));
+  let tk=0;const sweep=()=>{tk=0;document.querySelectorAll('.reveal:not(.in),.split:not(.in)').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});};
+  addEventListener('scroll',()=>{if(!tk)tk=requestAnimationFrame(sweep);},{passive:true});addEventListener('hashchange',()=>setTimeout(sweep,600));
+}
 </script>
 </body>
 </html>
